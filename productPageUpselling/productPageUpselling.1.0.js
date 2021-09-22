@@ -45,7 +45,7 @@ apx_widgets.functions.productPageUpsellingGet = function (k, query_, apx_widgets
         productPageUpsellingProduct.append('<div><img src="'+ img +'"/></div>');
         let productPageUpsellingProductInfo = $('<div class="apx-gap-vertical-10"></div>');
         productPageUpsellingProductInfo.append('<label data-name="'+ name +'" data-description="'+ description+ '" ><a href="'+query_[k]+'" target="_blank" style="text-decoration:none">'+ name +'</a></label>');
-        productPageUpsellingProduct.append('<div><button type="button">Adicionar</button></div>');
+        
         if(hasVariant){                    
             let options = $('<div class="apx_widgets_worker-productPageUpselling-item-options"></div>');
             options.append(result.find('.atributos'));
@@ -67,6 +67,7 @@ apx_widgets.functions.productPageUpsellingGet = function (k, query_, apx_widgets
         }               
         
         productPageUpsellingProduct.append(productPageUpsellingProductInfo);
+        productPageUpsellingProduct.append('<div><button type="button">Adicionar</button></div>');
         apx_widgetsproductPageUpselling.append(productPageUpsellingProduct);
         if (query_.length == k+1){
             apx_widgets.worker.productPageUpselling.config.insertFunction(apx_widgetsproductPageUpselling);
