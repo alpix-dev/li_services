@@ -129,7 +129,7 @@ apx_widgets.functions.productPageUpsellingGet = function (k, query_, apx_widgets
     });
 };
 
-$(document).on("click", "apx_widgets_worker-productPageUpselling-item button", function(r) {
+$(document).on("click", ".apx_widgets_worker-productPageUpselling-item button", function(r) {
     r.preventDefault();
     var q = $(this);
     let ajaxUrl = $(this).closest('.apx_widgets_worker-productPageUpselling-item').find('input[type="hidden"].active');
