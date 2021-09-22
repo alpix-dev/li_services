@@ -8,8 +8,8 @@ apx_widgets.worker.productPageUpselling.config = {
     title: "Aproveite e leve também",
     insertFunction: function(apx_widgetsproductPageUpselling) {
         if (apx_widgets.worker.productPageUpselling.config.preload == true) {
-            apx_widgetsproductPageUpselling.appendTo($(apx_widgets.worker.productPageUpselling.config.target).first().prev('.apx_preload'));
-            $(apx_widgets.worker.productPageUpselling.config.target).first().prev('.apx_preload').addClass('loaded')
+            apx_widgetsproductPageUpselling.appendTo($('.apx_preload.apx_widgetsproductPageUpselling'));
+            $('.apx_preload.apx_widgetsproductPageUpselling').addClass('loaded');
         } else {
             apx_widgetsproductPageUpselling.insertBefore($(apx_widgets.worker.productPageUpselling.config.target).first())
         }
@@ -23,7 +23,7 @@ apx_widgets.worker.productPageUpselling.run = function(el){
     var apx_widgetsproductPageUpselling = $('<div class="apx_widgets_worker-productPageUpselling"><strong>'+ apx_widgets.worker.productPageUpselling.config.title +'</strong></div>');        
     if(query_.length > 0){
         if(apx_widgets.worker.productPageUpselling.config.preload == true){
-            $('<div class="apx_preload"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>').insertBefore($(apx_widgets.worker.productPageUpselling.config.target).first());
+            $('<div class="apx_preload apx_widgetsproductPageUpselling"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>').insertBefore($(apx_widgets.worker.productPageUpselling.config.target).first());
         }
         apx_widgets.functions.productPageUpsellingGet(0,query_[0].products.slice(0,3), apx_widgetsproductPageUpselling)        
     }
