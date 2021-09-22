@@ -129,6 +129,50 @@ apx_widgets.functions.productPageUpsellingGet = function (k, query_, apx_widgets
     });
 };
 
+$(document).on("click", "apx_widgets_worker-productPageUpselling-item button", function(r) {
+    r.preventDefault();
+    var q = $(this);
+    let ajaxUrl = $(this).closest('.apx_widgets_worker-productPageUpselling-item').find('input[type="hidden"].active');
+    if(ajaxUrl.length == 0){
+        alert('Selecione uma variação para prosseguir');
+        return false;
+    }else{
+        $.ajax({
+            url: ajaxUrl.first().val(),
+            dataType: "json"
+        }).done(function(s) {
+            $.fancybox.showLoading();
+            $.fancybox.helpers.overlay.open();
+            if (s.status !== "sucesso") {
+                $("#comprar-ajax-status .erro .msg").text(s.mensagem);
+                $("#comprar-ajax-status .sucesso").hide();
+                $("#comprar-ajax-status .erro").show();
+                $.fancybox.helpers.overlay.close();
+                $.fancybox({
+                    type: "inline",
+                    href: "#comprar-ajax-status"
+                })
+            } else {
+                $("#comprar-ajax-status .sucesso").show();
+                $("#comprar-ajax-status .erro").hide();
+                $("#carrinho-mini").load("/carrinho/mini", function() {
+                    $.fancybox.helpers.overlay.close();
+                    $.fancybox({
+                        type: "inline",
+                        href: "#comprar-ajax-status",
+                        maxWidth: 800
+                    });
+                    atualizarCarrinhoMini()
+                })
+            }
+        }).fail(function(s) {
+            window.location = q.attr("href")
+        }).always(function() {
+            //$(".botao-comprar-ajax").button("reset")
+        });
+    }
+});
+
 // apx_widgets.functions.productPageUpsellingAjax = function (i, calls, primary_product){    
 //     $.get(calls[i], function(data){
         
