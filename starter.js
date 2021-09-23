@@ -83,6 +83,7 @@ apx_widgets.functions.related = function(){
     $('[alt="Logomarca Loja Integrada"]').closest('a').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');
     $('a[title="Loja Integrada"]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');
     $('a[title="Loja Integrada - Plataforma de loja virtual."]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');        
+    $('.creditos.plataforma').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');   
 }
 
 document.addEventListener("DOMContentLoaded", function() {apx_widgets.functions.related();});
