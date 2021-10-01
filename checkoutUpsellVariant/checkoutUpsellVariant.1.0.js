@@ -133,7 +133,7 @@ apx_widgets.functions.checkoutUpsellingVariantGet = function (k, query_, apx_wid
                         $(this).closest('li').addClass('active');                                
                         let found = variantOptions.filter(el => JSON.stringify(el.options) == JSON.stringify(currentOption));
                         if(found.length > 0){
-                            me.closest('.apx_widgets_worker-checkoutUpsellingVariant-item').find('.apx_widgets_worker-checkoutUpsellingVariant-item-price').text(found[0].price);
+                            me.closest('.apx_widgets_worker-checkoutUpsellingVariant-item').find('.apx_widgets_worker-checkoutUpsellingVariant-item-price').text(found[0].price == "" ? "Indisponível" : found[0].price);
                             me.closest('.apx_widgets_worker-checkoutUpsellingVariant-item').find('input[type="hidden"]').addClass('indisponivel').removeClass('active');
                             me.closest('.apx_widgets_worker-checkoutUpsellingVariant-item').find('input[type="hidden"][data-variacao-id="'+ JSON.stringify(currentOption).replace('[','').replace(']','').replace('"','').replace('","','-').replace('"','') +'"]').addClass('active').removeClass('indisponivel');
 
