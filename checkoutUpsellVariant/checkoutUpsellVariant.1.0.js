@@ -29,12 +29,17 @@ apx_widgets.worker.checkoutUpsellingVariant.run = function(el){
             let query_ = apx_widgets.worker.checkoutUpsellingVariant.list.filter(el => sku.toLowerCase().trim().includes(el.sku.toLowerCase().trim()));
             if(query_.length > 0){                
                 $.each(query_[0].products,function(k,v){
-                    if($('a[href="'+v+'"]').length == 0){
+                    let query_process = processProducts.find(el => el == v);
+                    // console.log('-- query process: ' + query_process);
+                    // console.log('-- flag: ' + flag);
+                    // console.log('-- a length: ' + $('a[href="'+v+'"]').length);
+                    if($('a[href="'+v+'"]').length == 0 && query_process == undefined && flag <= 3){
                         processProducts.push(v);
+                        flag = flag + 1;
                     }
                 });                
             }
-            flag = flag + processProducts.length;
+            
         }
     });    
     if(processProducts.length > 0){
