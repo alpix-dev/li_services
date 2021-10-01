@@ -154,7 +154,7 @@ $(document).on("click", ".apx_widgets_worker-checkoutUpsellingVariant-item butto
     r.preventDefault();
     var q = $(this);
     let ajaxUrl = $(this).closest('.apx_widgets_worker-checkoutUpsellingVariant-item').find('input[type="hidden"].active');
-    if(ajaxUrl.length == 0){
+    if(ajaxUrl.val() == undefined){
         alert('Selecione uma variação para prosseguir');
         return false;
     }else{
