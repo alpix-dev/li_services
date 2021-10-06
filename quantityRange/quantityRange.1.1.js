@@ -9,7 +9,7 @@ apx_widgets.worker.quantityRange.run = function(el){
         let sku = $(this).find('.produto-info > ul > li:first-child > span > strong').text().trim();
         let findSku = apx_widgets.worker.quantityRange.list.find(el => el.sku.toLowerCase().trim() === sku.toLowerCase().trim());
         if(apx_widgets.worker.quantityRange.config.matchComplete == false){
-            findSku = apx_widgets.worker.quantityRange.list.find(el => el.sku.toLowerCase().trim().includes(sku.toLowerCase().trim()));
+            findSku = apx_widgets.worker.quantityRange.list.find(el => sku.toLowerCase().trim().includes(el.sku.toLowerCase().trim()));
         }
         
         if(findSku){
