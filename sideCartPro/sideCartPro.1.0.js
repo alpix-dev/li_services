@@ -20,6 +20,8 @@ apx_widgets.worker.sideCartPro.run = function(){
     $(window).resize(function(){                
         apx_widgets.worker.sideCartPro.functions.sideCartScroll();        
     });
+
+    console.log('apx_widgets.worker.sideCartPro OK'); 
 }
 
 apx_widgets.worker.sideCartPro.functions.sideCartScroll = function(){
