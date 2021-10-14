@@ -38,7 +38,7 @@ apx_widgets.worker.categorySlider.run = function(el){
             }else{
                 clone = $(item).clone();
                 clone.find('i').remove();
-                if (apx_widgets.worker.categorySlider.config.withImages){
+                if (apx_widgets.worker.categorySlider.config.withImages && apx_widgets.worker.categorySlider.list.length > 0){
                     let find = apx_widgets.worker.categorySlider.list.filter(el => el.title.toLowerCase().trim().includes(clone.text().toLowerCase().trim()));
                     find.length == 1 ? clone.prepend($('<img src="'+ find[0].img +'"/>')) : '';
                 }
