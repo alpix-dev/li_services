@@ -75,13 +75,13 @@ body {
 #apx_widgets_worker-sideCartPro #apx_widgets_worker-sideCartPro-header svg {
 	height: 26px;
 	width: 26px;
-	fill: var(--primaryColor);
+	fill: #000;
 }
 
 #apx_widgets_worker-sideCartPro #apx_widgets_worker-sideCartPro-header span {
 	font-size: 16px;
 	text-transform: uppercase;
-	color: var(--primaryColor);
+	color: #000;
 	font-weight: 500;
 }
 
@@ -255,7 +255,7 @@ body {
 #apx_widgets_worker-sideCartPro .table-footer form .control-group b.cor-secundaria {
 	font-size: 0;
 	text-transform: uppercase;
-	color: var(--primaryColor);
+	color: #000;
 	font-weight: 500;
 	line-height: initial;
 }
