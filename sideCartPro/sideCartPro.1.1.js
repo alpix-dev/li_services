@@ -64,7 +64,8 @@ apx_widgets.worker.sideCartPro.functions.sideCartSet = function(){
 apx_widgets.worker.sideCartPro.functions.sideCartScroll = function(){
     if($("#apx_widgets_worker-sideCartPro-content .scroll").length){
         let h = $('#apx_widgets_worker-sideCartPro-header').innerHeight() + $('#apx_widgets_worker-sideCartPro-content .table-footer').innerHeight() + $('#apx_widgets_worker-sideCartPro-footer').innerHeight();
-        $('#apx_widgets_worker-sideCartPro-content .scroll').css('height','calc(100vh - ' + h + 'px');
+        let maxheight = $('#apx_widgets_worker-sideCartPro').innerHeight()
+        $('#apx_widgets_worker-sideCartPro-content .scroll').css('height','calc('+ maxheight +'px - ' + h + 'px');
     }
 }
 
