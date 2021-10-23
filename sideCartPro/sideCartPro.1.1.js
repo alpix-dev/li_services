@@ -42,9 +42,9 @@ apx_widgets.worker.sideCartPro.run = function(){
             })
         }else{
             apx_widgets.worker.sideCartPro.functions.sideCartToggle();
-        }
-        
+        }        
     });
+
 
     apx_widgets.worker.sideCartPro.functions.sideCartSet();
     apx_widgets.worker.sideCartPro.functions.sideCartActions();
@@ -57,6 +57,10 @@ apx_widgets.worker.sideCartPro.run = function(){
 apx_widgets.worker.sideCartPro.functions.sideCartSet = function(){
     if($('.apx_widgets_worker-aside-shadow').length == 0){
         $('body').append('<div class="apx_widgets_worker-aside-shadow"></div>');
+        
+        $('body .apx_widgets_worker-aside-shadow').click(function(){
+            $('body').removeClass('sideCart-visible').removeClass('asideSearch-visible').removeClass('asideMenu-visible').removeClass('asideAccount-visible');
+        })
     }
     $('body').append('<div id="apx_widgets_worker-sideCartPro"><div id="apx_widgets_worker-sideCartPro-header"><button type="button" onclick="apx_widgets.worker.sideCartPro.functions.sideCartToggle();">'+ apx_widgets.worker.sideCartPro.config.iconClose +'</button><span>'+ apx_widgets.worker.sideCartPro.config.title +'</span></div><div id="apx_widgets_worker-sideCartPro-content"></div><div id="apx_widgets_worker-sideCartPro-footer"><a href="/carrinho/index" class="botao principal botao-comprar">Finalizar Compra</div></div></div>');    
 }
