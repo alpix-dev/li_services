@@ -57,7 +57,7 @@ apx_widgets.functions.checkoutUpsellingVariantGet = function (k, query_, apx_wid
         let name = result.find('.principal .nome-produto.titulo').text();
         let img = result.find('#imagemProduto').attr('src');
         let hasVariant = result.find('.principal .acoes-produto').length > 1 ? true : false;
-        let price = hasVariant ? '' : result.find('.principal .acoes-produto .preco-produto .titulo').text().trim();
+        let price = hasVariant ? '' : result.find('.principal .acoes-produto .preco-produto strong.titulo').text().trim();
         let urlAdd = hasVariant ? '' : result.find('.principal .acoes-produto .comprar > a').attr('href');
         let description = result.find('meta[name="description"]').attr('content');
         let variantGrade = [];
