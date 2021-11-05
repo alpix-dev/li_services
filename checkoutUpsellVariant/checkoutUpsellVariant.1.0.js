@@ -143,6 +143,9 @@ apx_widgets.functions.checkoutUpsellingVariantGet = function (k, query_, apx_wid
                 }
             });         
             console.log('apx_widgets.worker.checkoutUpsellingVariant OK');            
+            if($('.apx_widgets_worker-checkoutUpsellingVariant .apx_widgets_worker-checkoutUpsellingVariant-item').length == 0){
+                $('.apx_widgetscheckoutUpsellingVariant').remove();
+            }
         }else{
             apx_widgets.functions.checkoutUpsellingVariantGet(k+1, query_, apx_widgetscheckoutUpsellingVariant);
         }
