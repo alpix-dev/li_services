@@ -66,30 +66,31 @@ apx_widgets.functions.checkoutUpsellingVariantGet = function (k, query_, apx_wid
         checkoutUpsellingVariantProduct.append('<div><img src="'+ img +'"/></div>');
         let checkoutUpsellingVariantProductInfo = $('<div class="apx-gap-vertical-10"></div>');
         checkoutUpsellingVariantProductInfo.append('<label data-name="'+ name +'" data-description="'+ description+ '" ><a href="'+query_[k]+'" target="_blank" style="text-decoration:none">'+ name +'</a></label>');
-        
-        if(hasVariant){                    
-            let options = $('<div class="apx_widgets_worker-checkoutUpsellingVariant-item-options"></div>');
-            options.append(result.find('.atributos'));
-            options.find('.atributo-item').toggleClass('atributo-item atributo-item-checkoutUpsellingVariant');
-            result.find('.principal .acoes-produto').each(function(k2, item){
-                let price_opt = $(this).find('.preco-produto .titulo').text().trim();
-                let productVariants = $(this).attr('data-variacao-id').split('-');
-                variantGrade.push({price: price_opt, options: productVariants});
-                let url_opt = $(this).find('.botao.botao-comprar.principal.grande').attr('href');                        
-                options.append('<input type="hidden" name="apx_widgets_worker-checkoutUpsellingVariant-item-id-'+ k2 +'" value="'+ url_opt +'" data-variacao-id="'+ $(this).attr('data-variacao-id') +'"/>');                                                                        
-            });
+        if(result.find('.principal .botao-comprar').length > 0){
+            if(hasVariant){                    
+                let options = $('<div class="apx_widgets_worker-checkoutUpsellingVariant-item-options"></div>');
+                options.append(result.find('.atributos'));
+                options.find('.atributo-item').toggleClass('atributo-item atributo-item-checkoutUpsellingVariant');
+                result.find('.principal .acoes-produto').each(function(k2, item){
+                    let price_opt = $(this).find('.preco-produto .titulo').text().trim();
+                    let productVariants = $(this).attr('data-variacao-id').split('-');
+                    variantGrade.push({price: price_opt, options: productVariants});
+                    let url_opt = $(this).find('.botao.botao-comprar.principal.grande').attr('href');                        
+                    options.append('<input type="hidden" name="apx_widgets_worker-checkoutUpsellingVariant-item-id-'+ k2 +'" value="'+ url_opt +'" data-variacao-id="'+ $(this).attr('data-variacao-id') +'"/>');                                                                        
+                });
+                
+                options.attr('variants',JSON.stringify(variantGrade));
+                checkoutUpsellingVariantProductInfo.append(options);
+                checkoutUpsellingVariantProductInfo.append('<b class="apx_widgets_worker-checkoutUpsellingVariant-item-price">'+ price +'</b>');
+            }else{
+                checkoutUpsellingVariantProductInfo.append('<input type="hidden" class="active" name="apx_widgets_worker-checkoutUpsellingVariant-item-id-'+ k +'" value="'+ urlAdd +'"/>');
+                checkoutUpsellingVariantProductInfo.append('<b class="apx_widgets_worker-checkoutUpsellingVariant-item-price">'+ price +'</b>');
+            }               
+            checkoutUpsellingVariantProductInfo.append('<div><button type="button">Adicionar</button></div>');
+            checkoutUpsellingVariantProduct.append(checkoutUpsellingVariantProductInfo);
             
-            options.attr('variants',JSON.stringify(variantGrade));
-            checkoutUpsellingVariantProductInfo.append(options);
-            checkoutUpsellingVariantProductInfo.append('<b class="apx_widgets_worker-checkoutUpsellingVariant-item-price">'+ price +'</b>');
-        }else{
-            checkoutUpsellingVariantProductInfo.append('<input type="hidden" class="active" name="apx_widgets_worker-checkoutUpsellingVariant-item-id-'+ k +'" value="'+ urlAdd +'"/>');
-            checkoutUpsellingVariantProductInfo.append('<b class="apx_widgets_worker-checkoutUpsellingVariant-item-price">'+ price +'</b>');
-        }               
-        checkoutUpsellingVariantProductInfo.append('<div><button type="button">Adicionar</button></div>');
-        checkoutUpsellingVariantProduct.append(checkoutUpsellingVariantProductInfo);
-        
-        apx_widgetscheckoutUpsellingVariant.append(checkoutUpsellingVariantProduct);
+            apx_widgetscheckoutUpsellingVariant.append(checkoutUpsellingVariantProduct);
+        }
         if (query_.length == k+1){
             apx_widgets.worker.checkoutUpsellingVariant.config.insertFunction(apx_widgetscheckoutUpsellingVariant);
             $('.apx_widgets_worker-checkoutUpsellingVariant .atributos .atributo-item-checkoutUpsellingVariant').click(function(){
