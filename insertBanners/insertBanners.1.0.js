@@ -22,7 +22,7 @@ apx_widgets.worker.insertBanners.run = function(){
          
         if(targetSelector.length == 1 && item.images.length > 0){
             let columns = 12/item.images.length;
-            let row = $('<div class="row-fluid"></div>');
+            let row = $('<div class="row-fluid apx_widgets_worker-insertBanners"></div>');
             $.each(item.images,function(k2, image){
                 row.append('<div class="span'+ columns+'"><a href="'+ image.link +'"><img src="'+ image.url +'"/></a></div>');
             });
