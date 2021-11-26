@@ -13,7 +13,7 @@ apx_widgets.worker.crossSelling.run = function(el){
         if(apx_widgets.worker.crossSelling.config.preload == true){
             $('<div class="apx_preload"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>').insertBefore($(apx_widgets.worker.crossSelling.config.target).first());
         }
-        apx_widgets.functions.crossSellingGet(0,query_[0].products.slice(0,3), apx_widgetscrossSelling)        
+        apx_widgets.functions.crossSellingGet(0,query_[0].products.filter(n => n).slice(0,3), apx_widgetscrossSelling)        
     }
 };
 
