@@ -24,7 +24,7 @@ apx_widgets.functions.crossSellingGet = function (k, query_, apx_widgetscrossSel
         let name = result.find('.principal .nome-produto.titulo').text();
         let img = result.find('#imagemProduto').attr('src');
         let hasVariant = result.find('.principal .acoes-produto').length > 1 ? true : false;
-        let price = hasVariant ? '' : result.find('.principal .acoes-produto').find(apx_widgets.worker.crossSelling.config.valueFrom).text().trim();
+        let price = hasVariant ? '' : result.find('.principal .acoes-produto').find(apx_widgets.worker.crossSelling.config.valueFrom).html().trim();
         let urlAdd = hasVariant ? '' : result.find('.principal .acoes-produto .comprar > a').attr('href');
         let variantGrade = [];
         let crossSellingProduct = $('<div class="apx_widgets_worker-crossSelling-item"></div>');
