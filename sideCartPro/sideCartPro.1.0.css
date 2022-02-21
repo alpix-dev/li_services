@@ -371,3 +371,8 @@ body {
 }
 
 #apx_widgets_worker-sideCartPro #apx_widgets_worker-sideCartPro-content .table-body .excluir a {font-size:14px}
+
+#apx_widgets_worker-sideCartPro {
+    height: 100vh;
+    max-height: -webkit-fill-available;
+}

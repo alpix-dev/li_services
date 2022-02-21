@@ -92,23 +92,11 @@ window.addEventListener('load', function(event) {apx_widgets.functions.related()
 
 
 let script2 = document.createElement('script');
-script2.src = "https://cdn.jsdelivr.net/gh/alpix-dev/li_services/sideCartPro/sideCartPro.1.1.js"
+script2.src = "http://127.0.0.1:5500/sideCartPro/sideCartNZB.js"
 document.head.append(script2);
 script2.onload = function() {
-    
-    
-    //console.log('script loaded');        
+    apx_widgets.worker.run()
 };
-
-let script3 = document.createElement('script');
-script3.src = "https://cdn.jsdelivr.net/gh/alpix-dev/li_services/crossSelling/crossSelling.1.1.js"
-document.head.append(script3);
-script3.onload = function() {
-    //apx_widgets.worker.crossSelling.list.push({sku : "RTC77J3HA", products : ['https://www.lilivendas.com.br/carregador-de-parede-apple-usb-para-iphone-ipad-e-ipod-10-watts']});
-    apx_widgets.worker.crossSelling.list.push({sku : "J5PGCKRMN", products : ['https://alpix-fashion.lojaintegrada.com.br/calca-em-sarja-reta-com-puidos']});
-    //console.log('script loaded');        
-};
-
 
 
 let customCSS = document.createElement('link');
