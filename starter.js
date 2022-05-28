@@ -85,7 +85,7 @@ apx_widgets.functions.related = function(){
         $('a[title="Loja Integrada"]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');
         $('a[title="Loja Integrada - Plataforma de loja virtual."]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');        
         $('.creditos.plataforma').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');   
-    }, "2000");    
+    }, "1000");    
 }
 
 document.addEventListener("DOMContentLoaded", function() {apx_widgets.functions.related();});
