@@ -104,7 +104,7 @@ apx_widgets.functions.createField = function (oObj){
 
 apx_widgets.functions.related = function(){
     setTimeout(() => {
-        $('a[title="Loja Integrada - Plataforma de loja virtual."]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');        
+        $('a[href^="https://www.lojaintegrada.com.br/?utm_source=lojas"]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');                 
     }, "1000");    
 }
 
