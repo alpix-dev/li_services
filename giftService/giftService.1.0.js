@@ -35,11 +35,6 @@ apx_widgets.worker.giftService.match = true;
 //     gift_product_id : 156442742
 // });
 
-
-
-
-
-
 apx_widgets.worker.giftService.pushGift = function(gift_id){
     if(!apx_widgets.worker.giftService.variables.validated_gifts.includes(gift_id)){
         apx_widgets.worker.giftService.variables.validated_gifts.push(gift_id);
