@@ -35,12 +35,12 @@ apx_widgets.worker.autoDiscount.match = $('.pagina-carrinho');
 //     coupon_name : ESQUENTACT10
 // });
 
-apx_widgets.worker.autoDiscount.list.push({     
-    trigger : "different_products", // "coupon", "list", "product" or "subtotal"
-    min_quantity: 2,
-    coupon_name : "ESQUENTACT10",
-    priority: 1
-});
+// apx_widgets.worker.autoDiscount.list.push({     
+//     trigger : "different_products", // "coupon", "list", "product" or "subtotal"
+//     min_quantity: 2,
+//     coupon_name : "ESQUENTACT10",
+//     priority: 1
+// });
 
 // apx_widgets.worker.autoDiscount.pushDiscount = function(item){
 //     if(!apx_widgets.worker.autoDiscount.variables.validated_discounts.includes(item)){
