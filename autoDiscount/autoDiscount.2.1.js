@@ -125,7 +125,7 @@ apx_widgets.worker.autoDiscount.run = function(){
                 flag = list.includes($(this).attr('data-produto-id')) ? flag + 1 : flag;
             });
 
-            if(flag == list.length){
+            if(flag >= item.min_quantity){
                 apx_widgets.worker.autoDiscount.variables.validated_discounts.push(item);
             }
         })
