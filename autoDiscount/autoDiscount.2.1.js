@@ -12,33 +12,33 @@ apx_widgets.worker.autoDiscount.match = $('.pagina-carrinho');
 // apx_widgets.worker.autoDiscount.list.push({     
 //     trigger : "coupon", // "coupon", "list", "product" or "subtotal"
 //     coupon_code : "AGODM5",
-//     coupon_name : 156442742
+//     coupon_code : 156442742
 // });
 
 // apx_widgets.worker.autoDiscount.list.push({     
 //     trigger : "product", // "coupon", "list", "product" or "subtotal"
 //     min_quantity : 5,
 //     product_id : "178961766",
-//     coupon_name : ESQUENTACT10
+//     coupon_code : ESQUENTACT10
 // });
 
 // apx_widgets.worker.autoDiscount.list.push({     
 //     trigger : "list", // "coupon", "list", "product" or "subtotal"
 //     products_id : "178962060,178961766",
-//     coupon_name : ESQUENTACT10
+//     coupon_code : ESQUENTACT10
     
 // });
 
 // apx_widgets.worker.autoDiscount.list.push({     
 //     trigger : "subtotal", // "coupon", "list", "product" or "subtotal"
 //     min_subtotal: 50,
-//     coupon_name : ESQUENTACT10
+//     coupon_code : ESQUENTACT10
 // });
 
 // apx_widgets.worker.autoDiscount.list.push({     
 //     trigger : "different_products", // "coupon", "list", "product" or "subtotal"
 //     min_quantity: 2,
-//     coupon_name : "ESQUENTACT10",
+//     coupon_code : "ESQUENTACT10",
 //     priority: 1
 // });
 
@@ -51,7 +51,7 @@ apx_widgets.worker.autoDiscount.match = $('.pagina-carrinho');
 apx_widgets.worker.autoDiscount.loadDiscount = function(active_coupon){
     
     if(active_coupon){
-        let q = apx_widgets.worker.autoDiscount.variables.validated_discounts.find(el => el.coupon_name == active_coupon);
+        let q = apx_widgets.worker.autoDiscount.variables.validated_discounts.find(el => el.coupon_code == active_coupon);
         if(!q){
             $.get('/carrinho/cupom/remover?cupom='+active_coupon, function(result){                    
                 location.reload(); 
@@ -62,13 +62,13 @@ apx_widgets.worker.autoDiscount.loadDiscount = function(active_coupon){
     let better = {priority : -999};
 
     $.each(apx_widgets.worker.autoDiscount.variables.validated_discounts, function(i_, item_){
-        if(item_.priority > better.priority && !apx_widgets.worker.autoDiscount.variables.manually_removed_discounts.includes(item_.coupon_name)){
+        if(item_.priority > better.priority && !apx_widgets.worker.autoDiscount.variables.manually_removed_discounts.includes(item_.coupon_code)){
             better = item_;
         }
     });
 
-    if(better.coupon_name && better.coupon_name != active_coupon){
-        $.post("/carrinho/cupom/validar", {cupom: better.coupon_name}, function(result){
+    if(better.coupon_code && better.coupon_code != active_coupon){
+        $.post("/carrinho/cupom/validar", {cupom: better.coupon_code}, function(result){
             location.reload(); 
         });
     }
@@ -87,7 +87,7 @@ apx_widgets.worker.autoDiscount.loadDiscount = function(active_coupon){
 apx_widgets.worker.autoDiscount.run = function(){
     
     apx_widgets.worker.autoDiscount.variables.remove_discounts = $.map(apx_widgets.worker.autoDiscount.list, function(item){
-        return item.coupon_name;
+        return item.coupon_code;
     });
 
     apx_widgets.worker.autoDiscount.variables.remove_discounts = [...new Set(apx_widgets.worker.autoDiscount.variables.remove_discounts)];
