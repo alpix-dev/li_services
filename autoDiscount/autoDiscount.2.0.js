@@ -51,8 +51,9 @@ apx_widgets.worker.autoDiscount.match = $('.pagina-carrinho');
 apx_widgets.worker.autoDiscount.loadDiscount = function(active_coupon){
     
     if(active_coupon){
-        let q = apx_widgets.worker.autoDiscount.variables.validated_discounts.find(el => el.coupon_name == active_coupon);
-        if(!q){
+        let q_ = apx_widgets.worker.autoDiscount.list.find(el => el.coupon_code == active_coupon);
+        let q = apx_widgets.worker.autoDiscount.variables.validated_discounts.find(el => el.coupon_code == active_coupon);
+        if(!q && q){        
             $.get('/carrinho/cupom/remover?cupom='+active_coupon, function(result){                    
                 location.reload(); 
             });

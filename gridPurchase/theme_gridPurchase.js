@@ -29,14 +29,21 @@ theme.worker.gridPurchase.run = function(el){
 
         tr = $('<tr></tr>');
         for (let z = 0; z < options.variants[0].length; z++) {    
-            console.log(options.variants[0][z])
-            tr.append('<td>' + ($('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"]').length > 0 ? '<span class="price">'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"] .preco-produto .titulo').first().text().trim() +'/un</span><div><button type="button">-</button><input data-variacao-id="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"]').attr('data-produto-id') +'" data-variacao-valor="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"] .preco-produto .titulo').first().text().trim() +'" type="tel" value="0" style="width:50px"/><button type="button">+</button></div>' : '<span></span>') + '</td>');
+            
+            let variantPrice_ = $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"] .preco-produto .titulo').first().text().trim().replace('R$ ','').replace('.','').replace(',','.');
+            
+            if(variantPrice_){
+                let maxQuantity = $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"] .qtde_estoque').text();
+                tr.append('<td>' + ($('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"]').length > 0 ? '<span class="price">'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"] .preco-produto .titulo').first().text().trim() +'/un</span><div><button type="button">-</button><input data-variacao-id="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"]').attr('data-produto-id') +'" estoque="'+ maxQuantity +'" data-variacao-valor="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'"] .preco-produto .titulo').first().text().trim().replace('R$ ','').replace('.','').replace(',','.') +'" type="tel" value="0" style="width:50px"/><button type="button">+</button></div>' : '<span></span>') + '</td>');
+            }else{
+                tr.append('<td><span>Indisponível</span></td>');
+            }
         }
         table.append(tr);
         
         table = $('<div class="table-responsive"></div>').append(table);
         theme_worker_gridPurchase.append(table);
-        theme_worker_gridPurchase.append('<div><span class="total">R$ 0,00</span><button type="button" class="botao botao-comprar principal grande">Comprar</button></div>');
+        theme_worker_gridPurchase.append('<div><span class="total">R$ 0,00</span><button type="button" class="botao botao-comprar principal grande">Adicionar à sacola</button></div>');
         theme_worker_gridPurchase.insertBefore('.atributos');       
 
 
@@ -44,8 +51,11 @@ theme.worker.gridPurchase.run = function(el){
         $('.theme_worker-gridPurchase input').change(function(){
             let total = 0;
             $('.theme_worker-gridPurchase input').each(function(){
-                let price = parseFloat($(this).data('variacao-valor').replace('R$ ','').replace('.','').replace(',','.')) * parseInt($(this).val());
+                let price = parseFloat($(this).data('variacao-valor')) * parseInt($(this).val());
+                
+                
                 total = total + price;                
+                
             });    
             let formatMoney = new Intl.NumberFormat('id',{
                 minimumFractionDigits: 2,
@@ -54,7 +64,7 @@ theme.worker.gridPurchase.run = function(el){
                             
             $('.theme_worker-gridPurchase .total').text('R$ ' + formatMoney);
         });
-        console.log('theme.worker.gridPurchase--oneOption OK');    
+        
     }else{
         let options = [];
         options.titles = [];
@@ -82,13 +92,20 @@ theme.worker.gridPurchase.run = function(el){
             let tr = $('<tr></tr>');
             tr.append('<td>'+ options.variants[0][i].nameOrContent +'</td>');
             for (let z = 0; z < options.variants[1].length; z++) {    
-                tr.append('<td>' + ($('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"]').length > 0 ? '<span class="price">'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"] .preco-produto .titulo').first().text().trim() +'/un</span><div><button type="button">-</button><input data-variacao-id="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'-'+ options.variants[1][z].variantId +'"]').attr('data-produto-id') +'" data-variacao-valor="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"] .preco-produto .titulo').first().text().trim() +'" type="tel" value="0" style="width:50px"/><button type="button">+</button></div>' : '<span></span>') + '</td>');
+                let variantPrice_ = $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"] .preco-produto .titulo').first().text().trim().replace('R$ ','').replace('.','').replace(',','.');
+                
+                if(variantPrice_){
+                    let maxQuantity = $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"] .qtde_estoque').text();
+                    tr.append('<td>' + ($('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"]').length > 0 ? '<span class="price">'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][i].variantId +'-'+ options.variants[1][z].variantId +'"] .preco-produto .titulo').first().text().trim() +'/un</span><div><button type="button">-</button><input estoque="'+ maxQuantity +'" data-variacao-id="'+ $('.principal .acoes-produto[data-variacao-id="'+ options.variants[0][z].variantId +'-'+ options.variants[1][z].variantId +'"]').attr('data-produto-id') +'" data-variacao-valor="'+ variantPrice_ +'" type="tel" value="0" style="width:50px"/><button type="button">+</button></div>' : '<span></span>') + '</td>');
+                }else{
+                    tr.append('<td><span>Indisponível</span></td>');
+                }
             }
             table.append(tr);
         }
         table = $('<div class="table-responsive"></div>').append(table);
         theme_worker_gridPurchase.append(table);
-        theme_worker_gridPurchase.append('<div><span class="total">R$ 0,00</span><button type="button" class="botao botao-comprar principal grande">Comprar</button></div>');
+        theme_worker_gridPurchase.append('<div><span class="total">R$ 0,00</span><button type="button" class="botao botao-comprar principal grande">Adicionar à sacola</button></div>');
         theme_worker_gridPurchase.insertBefore('.atributos');       
 
 
@@ -97,25 +114,27 @@ theme.worker.gridPurchase.run = function(el){
             let total = 0;
             $('.theme_worker-gridPurchase input').each(function(){
                 let price = parseFloat($(this).data('variacao-valor').replace('R$ ','').replace('.','').replace(',','.')) * parseInt($(this).val());
-                console.log(price);
+                
                 total = total + price;                
-                console.log(total);
+                
             });            
             $('.theme_worker-gridPurchase .total').text('R$ ' + (total.toFixed(2).toString().replace('.',',')));
         });
-        console.log('theme.worker.gridPurchase--multiOption OK');            
+        
     }
 
     $('.theme_worker-gridPurchase table div button').click(function(){
         let input = $(this).parent('div').find('input');
         let qtd = parseInt(input.val());
+        let max = parseInt(input.attr('estoque'));
         if($(this).is(':last-child')){
             qtd = qtd + 1
         }else{
             qtd = qtd - 1
         }
 
-        qtd < 0 ? qtd = 1 : qtd = qtd
+        qtd > max ? qtd = max : qtd = qtd;
+        qtd < 0 ? qtd = 1 : qtd = qtd;
 
         input.val(qtd);
         input.change();
@@ -159,6 +178,6 @@ theme.functions.gridPurchaseAjax = function (i, calls){
     })
     .fail(function(data){
         theme.functions.blockPage(false);
-        console.log('theme.worker.gridPurchase - Err - ' + i);
+        
     });          
 };
