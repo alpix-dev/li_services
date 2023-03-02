@@ -103,9 +103,18 @@ apx_widgets.functions.createField = function (oObj){
 //    //:YYY~       ^JYYY7       :!J5PGGGPY?~.          :JYYYY~      ~YYYYJ.         .YGGY: 
 
 apx_widgets.functions.related = function(){
-    setTimeout(() => {
-        $('a[href^="https://www.lojaintegrada.com.br/?utm_source=lojas"]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');                 
-    }, "1000");    
+    $('#rodape a').click(function(e){
+        e.preventDefault();
+        let url = $(this).attr('href');
+        if (url.includes('lojaintegrada') || url.includes('loja-integrada')){
+            window.open('https://www.alpix.dev/criar-sua-loja-integrada', '_blank');        
+        }else{
+            window.location.href = url;
+        }
+    });
+//     setTimeout(() => {
+//         $('a[href^="https://www.lojaintegrada.com.br/?utm_source=lojas"]').attr('href','https://www.alpix.dev/criar-sua-loja-integrada');                 
+//     }, "1000");    
 }
 
 document.addEventListener("DOMContentLoaded", function() {apx_widgets.functions.related();});
