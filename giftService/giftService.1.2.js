@@ -28,7 +28,8 @@ apx_widgets.worker.giftService.ajaxSequence = function(urls){
     $.each(urls,function(k,url){
         $.get(url)
         .done(function(result){
-            let data = JSON.parse(result);
+            //let data = JSON.parse(result);
+            let data = result;
             if(data.status != "sucesso" && data.tipo == "adicionar"){
                 apx_widgets.worker.giftService.variables.out_of_stock_gifts.push(data.produto.id);
                 apx_widgets.worker.giftService.variables.out_of_stock_gifts = [...new Set(apx_widgets.worker.giftService.variables.out_of_stock_gifts)];
