@@ -99,6 +99,26 @@ apx_widgets.worker.sideCartPro.functions.sideCartActions = function(html){
                 if (q.status !== "sucesso") {
                     alert(q.mensagem);
                 } else {
+                    if ("quantidade" === q.tipo) {
+                        D = {
+                            cart_id: q.carrinho_id,
+                            item_id: q.produto_id,
+                            quantity: q.quantidade
+                        };
+                        var x = sendMetrics({
+                            type: "event",
+                            name: "change_quantity",
+                            data: D
+                        });
+                        $(document).trigger("li_change_quantity", [x, D])
+                    } else "remover" === q.tipo && (D = {
+                        cart_id: q.carrinho_id,
+                        item_id: q.produto_id
+                    }, x = sendMetrics({
+                        type: "event",
+                        name: "remove_from_cart",
+                        data: D
+                    }), $(document).trigger("li_remove_from_cart", [x, D]));
                     apx_widgets.worker.sideCartPro.functions.sideCartLoadContent();
                 }
             }).fail(function(q) {
