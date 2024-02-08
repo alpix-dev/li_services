@@ -23,6 +23,15 @@ apx_widgets.worker.sideCartPro.run = function(){
             if (p.status !== "sucesso") {
                 alert(p.mensagem);
             } else {
+                let item = [{
+                    item_id : p.produto.id,
+                    item_name: p.produto.nome,
+                    price: p.produto.preco,
+                    quantity: p.produto.quantidade
+                }]
+                window.LIgtag('event', 'add_to_cart', {
+                    items: item
+                });
                 apx_widgets.worker.sideCartPro.functions.sideCartLoadContent();
             }
         }).fail(function(p) {
