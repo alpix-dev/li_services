@@ -23,15 +23,23 @@ apx_widgets.worker.sideCartPro.run = function(){
             if (p.status !== "sucesso") {
                 alert(p.mensagem);
             } else {
-                let item = [{
-                    item_id : p.produto.id,
-                    item_name: p.produto.nome,
-                    price: p.produto.preco,
-                    quantity: p.produto.quantidade
-                }]
-                window.LIgtag('event', 'add_to_cart', {
-                    items: item
+                let D = { 
+                    id: p.carrinho_id ,
+                    items: [{
+                        item_id : p.produto.id,
+                        item_sku: p.produto.sku,
+                        item_name: p.produto.nome,
+                        price: p.produto.preco,
+                        quantity: p.produto.quantidade
+                    }]
+                };
+                var x = sendMetrics({
+                    type: "event",
+                    name: "add_to_cart",
+                    data: D
                 });
+                sessionStorage.setItem('carrinho_id',p.carrinho_id);
+                $(document).trigger("li_add_to_cart", [x, D]);
                 apx_widgets.worker.sideCartPro.functions.sideCartLoadContent();
             }
         }).fail(function(p) {
@@ -47,7 +55,34 @@ apx_widgets.worker.sideCartPro.run = function(){
             apx_widgets.worker.sideCartPro.functions.sideCartLoadContent();
         }else{
             apx_widgets.worker.sideCartPro.functions.sideCartToggle();
-        }        
+        } 
+        
+        let carrinho_id = sessionStorage.getItem('carrinho_id');
+        let carrinho_minicart = sessionStorage.getItem(`carrinho_minicart`);
+        
+        if(carrinho_id && carrinho_minicart){
+            let cart = {
+                currency: 'BRL',
+                id: carrinho_id,
+                value: JSON.parse(carrinho_minicart).totals.items,
+                coupon: '',
+                items: JSON.parse(carrinho_minicart).items.map(function(item) {
+                    return {
+                      item_id: item.id.toString(),
+                      item_sku: item.sku,
+                      item_name: item.name,
+                      price: item.price.sellingPrice,
+                      quantity: item.quantity
+                    }
+                  })
+            };
+            var eventID = sendMetrics({
+                type: 'pageview',
+                name: 'view_cart',
+                data: cart
+            });
+            $(document).trigger('li_view_cart', [eventID, cart]);            
+        }            
     });
 
 
