@@ -377,6 +377,6 @@ body {
     max-height: -webkit-fill-available;
 }
 
-#theme_sideCart .tabela-carrinho tr,
-#theme_sideCart .tabela-carrinho tr td{padding: 0!important;}
-#theme_sideCart .tabela-carrinho.table-body tbody tr{padding:15px!important}
+#apx_widgets_worker-sideCartPro .tabela-carrinho tr,
+#apx_widgets_worker-sideCartPro .tabela-carrinho tr td{padding: 0!important;}
+#apx_widgets_worker-sideCartPro .tabela-carrinho.table-body tbody tr{padding:15px!important}
